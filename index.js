@@ -1,4 +1,3 @@
-
 const myLibrary = []
 class Books {
   constructor(title, author, numberOfPages, isFinished) {
@@ -12,7 +11,6 @@ class Books {
 
   class Library {
     constructor(){
-
     }
 
   //add book to library
@@ -57,14 +55,19 @@ class Books {
 
 thisLibrary = new Library();
 //debug station
-//grab book button  
-$("#new-book-btn").on('click', () => {
-  $("#new-book-form").css("display", "flex");
-})
+$(document).ready(function() {
+  // Ensure the DOM is fully loaded before attaching event handlers
 
-//grab submit button
-$("#new-book-form").on("submit", (event) => {
-  event.preventDefault();
-  alert("submit debug")
-  thisLibrary.addBookToLibrary();
+  // Grab book button  
+  $("#new-book-btn").on('click', () => {
+    console.log("New Book Button Clicked");
+    $("#new-book-form").show();
+  });
+
+  // Grab submit button
+  $("#new-book-form").on("submit", (event) => {
+    event.preventDefault();
+    console.log("Form Submitted");
+    thisLibrary.addBookToLibrary();
+  });
 });
