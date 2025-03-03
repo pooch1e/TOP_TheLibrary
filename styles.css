@@ -10,6 +10,15 @@ body {
   margin-bottom: 20px;
 }
 
+.btn {
+  justify-items: center;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  height: 25px;
+  width: 200px;
+}
+
 #new-book-btn {
   background-color: #007bff;
   color: white;
@@ -81,6 +90,28 @@ form input[type="submit"]:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Card Button Styles */
+.card .btn {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-top: 5px;
+  width: auto;
+}
+
+.card .btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card .btn-primary:hover {
+  background-color: #0056b3;
 }
 
 .card {
