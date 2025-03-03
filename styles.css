@@ -8,3 +8,8 @@ button {
   justify-items: center;
   
 }
+
+#new-book-form {
+  display: none;
+}
+
