@@ -45,7 +45,7 @@ class Books {
           <h5 class="card-title">${book.title}</h5>
           <p class="card-text">Author: ${book.author}</p>
           <p class="card-text">Pages: ${book.numberOfPages}</p>
-          <button class="btn btn-primary">${book.isFinished ? "Finished" : "Not Finished"}</button>
+          <button class="btn btn-primary finished" data-index="${i}">${book.isFinished ? "Finished" : "Not Finished"}</button>
           <button class="btn btn-primary remove-btn" data-index="${i}">Remove Book</button>
         </div>
       </div>
@@ -53,6 +53,12 @@ class Books {
 
     $("#library-container").append(card);
     }
+
+    //Event listener for finished button
+    $(".finished").on("click", (e) => {
+      let index = $(e.target).data("index");
+      this.toggleFinished(index);
+    })
     
     //Event listener for remove button
     $(".remove-btn").on("click", (e) => {
@@ -64,7 +70,13 @@ class Books {
       this.myLibrary.splice(index, 1);
       this.displayLibrary(); //render library
     }
+
+    toggleFinished(index) {
+      this.myLibrary[index].isFinished = !this.myLibrary[index].isFinished;
+      this.displayLibrary();
+    }
   }
+
 
 
 
