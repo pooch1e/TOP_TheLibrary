@@ -1,4 +1,4 @@
-const myLibrary = []
+
 class Books {
   constructor(title, author, numberOfPages, isFinished) {
     this.title = title;
@@ -11,6 +11,7 @@ class Books {
 
   class Library {
     constructor(){
+      this.myLibrary = [];
     }
 
   //add book to library
@@ -20,11 +21,13 @@ class Books {
   let numberOfPages = $("#numberOfPages").val();
   let isFinished = $('#isFinished').prop('checked');
   
+  
+  
   //create new object
   let newBook = new Books(title, author, numberOfPages, isFinished);
   console.log(newBook);
-  myLibrary.push(newBook)
-  console.log(myLibrary);
+  this.myLibrary.push(newBook)
+  console.log(this.myLibrary);
   this.displayLibrary(); //render to screen
   }
   //add books to screen
@@ -33,9 +36,9 @@ class Books {
     $("#library-container").html("");
 
     //loop through library and display all books
-    for (let i = 0; i < myLibrary.length; i++) {
-      let book = myLibrary[i]; //saving each object to this variable at index i
-      console.log(myLibrary[i]); //log elements to console
+    for (let i = 0; i < this.myLibrary.length; i++) {
+      let book = this.myLibrary[i]; //saving each object to this variable at index i
+      console.log(this.myLibrary[i]); //log elements to console
       let card = `
       <div class="card">
         <div class="card-body">
@@ -43,17 +46,29 @@ class Books {
           <p class="card-text">Author: ${book.author}</p>
           <p class="card-text">Pages: ${book.numberOfPages}</p>
           <button class="btn btn-primary">${book.isFinished ? "Finished" : "Not Finished"}</button>
+          <button class="btn btn-primary remove-btn" data-index="${i}">Remove Book</button>
         </div>
       </div>
     `;
 
     $("#library-container").append(card);
     }
+    
+    //Event listener for remove button
+    $(".remove-btn").on("click", (e) => {
+      let index = $(e.target).data("index");
+      this.removeBookFromLibrary(index);
+    });
   }
-}
+    removeBookFromLibrary(index) {
+      this.myLibrary.splice(index, 1);
+      this.displayLibrary(); //render library
+    }
+  }
 
 
-thisLibrary = new Library();
+
+const thisLibrary = new Library();
 //debug station
 $(document).ready(function() {
   // Ensure the DOM is fully loaded before attaching event handlers
